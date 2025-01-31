@@ -21,6 +21,9 @@ variable "app_name" {
 variable "create_nat" {
 
 }
+variable "applications" {
+  
+}
 
 /*=========
 EKS module variables
