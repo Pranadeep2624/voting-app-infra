@@ -28,33 +28,33 @@ terraform {
 }
 
 provider "aws" {
-  region  = var.region
-  
+  region = var.region
+
 }
 provider "helm" {
-   kubernetes {
-     host                   = module.eks.endpoint
-     cluster_ca_certificate = base64decode(module.eks.eks_cluster_cert_authority)
-     exec {
-       api_version = "client.authentication.k8s.io/v1beta1"
-       args        = ["eks", "get-token", "--cluster-name", module.eks.eks_cluster_name]
-       command     = "aws"
+  kubernetes {
+    host                   = module.eks.endpoint
+    cluster_ca_certificate = base64decode(module.eks.eks_cluster_cert_authority)
+    exec {
+      api_version = "client.authentication.k8s.io/v1beta1"
+      args        = ["eks", "get-token", "--cluster-name", module.eks.eks_cluster_name]
+      command     = "aws"
 
 
-     }
+    }
 
-   }
+  }
 
 
 }
 provider "kubernetes" {
-       host                   = module.eks.endpoint
-     cluster_ca_certificate = base64decode(module.eks.eks_cluster_cert_authority)
-     exec {
-       api_version = "client.authentication.k8s.io/v1beta1"
-       args        = ["eks", "get-token", "--cluster-name", module.eks.eks_cluster_name]
-       command     = "aws"
+  host                   = module.eks.endpoint
+  cluster_ca_certificate = base64decode(module.eks.eks_cluster_cert_authority)
+  exec {
+    api_version = "client.authentication.k8s.io/v1beta1"
+    args        = ["eks", "get-token", "--cluster-name", module.eks.eks_cluster_name]
+    command     = "aws"
 
 
-     }
+  }
 }
