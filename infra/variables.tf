@@ -55,7 +55,10 @@ variable "eks_max_size" {
 /*========
 AWS ALB Controller Version
 =======*/
-variable "irsa_service_account" {
+variable "namespace" {
+
+}
+variable "service_account" {
 
 }
 variable "controller_version" {

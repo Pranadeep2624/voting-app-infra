@@ -19,5 +19,6 @@ eks_endpoint_public_access  = true
 /*====
 AWSALBController variables
 =====*/
-irsa_service_account = ["system:serviceaccount:kube-system:aws-alb-controller-sa"]
-controller_version   = "1.10.1"
+namespace          = "kube-system"
+service_account    = "aws-alb-controller-sa"
+controller_version = "1.10.1"
