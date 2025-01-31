@@ -1,5 +1,5 @@
 module "eks" {
-  source          = "git::https://github.com/Pranadeep2624/aws-service-modules.git//EKS"
+  source          = "git::https://github.com/Pranadeep2624/terraform-aws-modules.git//EKS"
   environment     = var.environment
   app_name        = var.app_name
   eks_version = var.eks_version
