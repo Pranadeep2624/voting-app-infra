@@ -11,9 +11,9 @@ EKS variables
 =====*/
 eks_version                 = "1.30"
 eks_instance_type           = "t2.large"
-eks_desired_size            = "1"
-eks_min_size                = "1"
-eks_max_size                = "1"
+eks_desired_size            = "2"
+eks_min_size                = "2"
+eks_max_size                = "2"
 eks_endpoint_private_access = false
 eks_endpoint_public_access  = true
 /*====
