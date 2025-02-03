@@ -90,7 +90,7 @@ locals {
   mandatory_helm_chart_values = {
     "clusterName"                                               = module.eks.eks_cluster_name
     "serviceAccount.name"                                       = var.service_account
-    "serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn" = module.irsa.role_arn
+    "serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn" = module.controller.irsa_role_arn
   }
 
 }
