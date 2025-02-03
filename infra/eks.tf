@@ -106,7 +106,6 @@ resource "helm_release" "aws_alb_controller" {
 
   cleanup_on_fail = true
 
-  timeout = 600
   dynamic "set" {
     for_each = local.mandatory_helm_chart_values
     iterator = helm_key_value
@@ -115,7 +114,5 @@ resource "helm_release" "aws_alb_controller" {
       value = helm_key_value.value
     }
   }
-
-depends_on = [  module.controller ]
-
+  depends_on = [ module.controller ]
 }
