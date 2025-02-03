@@ -85,3 +85,37 @@ module "controller" {
   service_account    = var.service_account
   depends_on = [ module.eks ]
 }
+
+locals {
+  mandatory_helm_chart_values = {
+    "clusterName"                                               = module.eks.eks_cluster_name
+    "serviceAccount.name"                                       = var.service_account
+    "serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn" = module.irsa.role_arn
+  }
+
+}
+
+resource "helm_release" "aws_alb_controller" {
+  name = "aws-load-balancer-controller"
+
+  repository       = "https://aws.github.io/eks-charts"
+  chart            = "aws-load-balancer-controller"
+  create_namespace = var.namespace != "kube-system" ? true : false
+  version          = var.controller_version
+  namespace        = var.namespace
+
+  cleanup_on_fail = true
+
+  timeout = 600
+  dynamic "set" {
+    for_each = local.mandatory_helm_chart_values
+    iterator = helm_key_value
+    content {
+      name  = helm_key_value.key
+      value = helm_key_value.value
+    }
+  }
+
+depends_on = [  module.controller ]
+
+}
