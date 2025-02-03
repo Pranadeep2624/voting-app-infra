@@ -64,6 +64,11 @@ locals {
       userarn  = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:user/AdminUserPranadeep"
       username = "AdminUserPranadeep"
       groups   = ["system:masters"]
+    },
+    {
+      userarn  = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:root"
+      username = "AdminUserPranadeep"
+      groups   = ["system:masters"]
     }
   ]
   aws_auth_accounts = []
