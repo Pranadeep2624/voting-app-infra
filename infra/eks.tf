@@ -74,13 +74,13 @@ locals {
   aws_auth_accounts = []
 }
 
-# module "controller" {
-#   source             = "git::https://github.com/Pranadeep2624/terraform-aws-modules.git//AWSALBController"
-#   oidc_url           = module.eks.oidc_url
-#   cluster_name       = module.eks.eks_cluster_name
-#   controller_version = var.controller_version
-#   app_name           = var.app_name
-#   environment        = var.environment
-#   namespace          = var.namespace
-#   service_account    = var.service_account
-# }
+module "controller" {
+  source             = "git::https://github.com/Pranadeep2624/terraform-aws-modules.git//AWSALBController"
+  oidc_url           = module.eks.oidc_url
+  cluster_name       = module.eks.eks_cluster_name
+  controller_version = var.controller_version
+  app_name           = var.app_name
+  environment        = var.environment
+  namespace          = var.namespace
+  service_account    = var.service_account
+}

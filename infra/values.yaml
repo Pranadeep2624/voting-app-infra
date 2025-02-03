@@ -1,0 +1,19 @@
+global:
+  domain: ""
+
+configs:
+  params:
+    server.insecure: true
+
+server:
+  ingress:
+    enabled: true
+    ingressClassName: alb
+    annotations:
+      alb.ingress.kubernetes.io/scheme: internet-facing
+      alb.ingress.kubernetes.io/target-type: instance
+      alb.ingress.kubernetes.io/backend-protocol: HTTP
+      # alb.ingress.kubernetes.io/listen-ports: '[{"HTTP":80}]'
+    tls: false
+  service:
+    type: NodePort
