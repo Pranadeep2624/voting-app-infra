@@ -83,4 +83,5 @@ module "controller" {
   environment        = var.environment
   namespace          = var.namespace
   service_account    = var.service_account
+  depends_on = [ module.eks ]
 }

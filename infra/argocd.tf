@@ -18,6 +18,7 @@ resource "helm_release" "argocd" {
     name  = "controller.serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn"
     value = module.argocd_irsa.role_arn
   }
+  depends_on = [ module.eks ]
 }
 
 /*==========
@@ -31,5 +32,5 @@ module "argocd_irsa" {
   service_account = ["system:serviceaccount:argocd:argocd-server", "system:serviceaccount:argocd:argocd-application-controller"]
   role_name       = "${module.eks.eks_cluster_name}-argocd-assume-role"
   policy_arns     = []
-
+depends_on = [ module.eks ]
 }
