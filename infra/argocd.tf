@@ -1,25 +1,25 @@
-resource "helm_release" "argocd" {
-  name = "argocd"
+# resource "helm_release" "argocd" {
+#   name = "argocd"
 
-  repository       = "https://argoproj.github.io/argo-helm"
-  chart            = "argo-cd"
-  namespace        = "argocd"
-  create_namespace = true
-  timeout          = 600
-  version          = "7.7.7"
-  cleanup_on_fail  = true
-  values           = [file("./values.yaml")]
+#   repository       = "https://argoproj.github.io/argo-helm"
+#   chart            = "argo-cd"
+#   namespace        = "argocd"
+#   create_namespace = true
+#   timeout          = 600
+#   version          = "7.7.7"
+#   cleanup_on_fail  = true
+#   values           = [file("./values.yaml")]
   
-  set {
-    name  = "server.serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn"
-    value = module.argocd_irsa.role_arn
-  }
-  set {
-    name  = "controller.serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn"
-    value = module.argocd_irsa.role_arn
-  }
-  depends_on = [ module.eks ]
-}
+#   set {
+#     name  = "server.serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn"
+#     value = module.argocd_irsa.role_arn
+#   }
+#   set {
+#     name  = "controller.serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn"
+#     value = module.argocd_irsa.role_arn
+#   }
+#   depends_on = [ module.eks ]
+# }
 
 /*==========
 ArgoCD assume role
