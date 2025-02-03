@@ -24,7 +24,7 @@ resource "helm_release" "argocd" {
 ArgoCD assume role
 ==========*/
 module "argocd_irsa" {
-  source        = "git::https://github.com/Pranadeep2624/terraform-service-modules.git//IRSA"
+  source        = "git::https://github.com/Pranadeep2624/terraform-aws-modules.git//IRSA"
   oidc_provider = replace(module.argocd_eks.oidc_url, "https://", "")
 
 
