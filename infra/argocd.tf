@@ -25,11 +25,11 @@ ArgoCD assume role
 ==========*/
 module "argocd_irsa" {
   source        = "git::https://github.com/Pranadeep2624/terraform-aws-modules.git//IRSA"
-  oidc_provider = replace(module.argocd_eks.oidc_url, "https://", "")
+  oidc_provider = replace(module.eks.oidc_url, "https://", "")
 
 
   service_account = ["system:serviceaccount:argocd:argocd-server", "system:serviceaccount:argocd:argocd-application-controller"]
-  role_name       = "${module.argocd_eks.eks_cluster_name}-argocd-assume-role"
+  role_name       = "${module.eks.eks_cluster_name}-argocd-assume-role"
   policy_arns     = []
 
 }
