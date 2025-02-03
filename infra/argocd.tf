@@ -9,7 +9,7 @@ resource "helm_release" "argocd" {
   version          = "7.7.7"
   cleanup_on_fail  = true
   values           = [file("./values.yaml")]
-  depends_on       = [module.controller]
+  
   set {
     name  = "server.serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn"
     value = module.argocd_irsa.role_arn
