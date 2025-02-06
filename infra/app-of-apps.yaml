@@ -1,0 +1,8 @@
+repos:
+  username: a
+  password: b
+  urls:
+    - name: abc
+      url: "abc"
+appofapps:
+  enabled: false

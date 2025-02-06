@@ -116,3 +116,18 @@ resource "helm_release" "aws_alb_controller" {
   }
   depends_on = [ module.controller ]
 }
+
+resource "helm_release" "register_app_of_apps" {
+  name = "app-of-apps"
+
+  repository       = "https://github.com/Pranadeep2624/central-helm-charts.git"
+  chart            = "votingapp-app-of-apps"
+  create_namespace =  false
+  version          = var.controller_version
+  namespace        = "argocd"
+
+  cleanup_on_fail = true
+
+  values = [file("./app-of-apps.yaml")]
+  depends_on = [ module.controller ]
+}
