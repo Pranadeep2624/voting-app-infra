@@ -56,4 +56,5 @@ module "register-apps" {
   cluster_name = module.eks.eks_cluster_name
   cluster_certificate_authority_data = module.eks.eks_cluster_cert_authority
   cluster_connect_secret_name = module.eks.eks_cluster_name
+  namespace = "argocd"
 }
