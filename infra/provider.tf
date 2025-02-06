@@ -32,7 +32,7 @@ provider "aws" {
 
 }
 data "aws_eks_cluster_auth" "cluster_auth" {
-  name = module.eks.endpoint
+  name = module.eks.eks_cluster_name
 }
 provider "helm" {
   kubernetes {
