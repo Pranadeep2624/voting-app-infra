@@ -1,0 +1,27 @@
+{{ if .Values.appofapps.enabled }}
+---
+
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ .Values.appofapps.name }}
+  namespace: argocd
+spec:
+  destination:
+    namespace: {{ .Values.appofapps.destination.namespace }}
+    server: {{ .Values.appofapps.destination.server }}
+  project: default
+  source:
+    path: {{ .Values.appofapps.source.path }}
+    repoURL: {{ .Values.appofapps.source.repoURL }}
+    targetRevision: {{ .Values.appofapps.source.targetRevision }}
+  syncPolicy:
+    automated: # automated sync by default retries failed attempts 5 times with following delays between attempts ( 5s, 10s, 20s, 40s, 80s ); retry controlled using `retry` field.
+      prune: true # Specifies if resources should be pruned during auto-syncing ( false by default ).
+      selfHeal: true # Specifies if partial app sync should be executed when resources are changed only in target Kubernetes cluster and no git change detected ( false by default ).
+      allowEmpty: false # Allows deleting all application resources during automatic syncing ( false by default ).
+    syncOptions:     # Sync options which modifies sync behavior
+    - Validate=true # disables resource validation (equivalent to 'kubectl apply --validate=false') ( true by default ).
+    - PrunePropagationPolicy=foreground # Supported policies are background, foreground and orphan.
+    - ApplyOutOfSyncOnly=true
+{{ end }}

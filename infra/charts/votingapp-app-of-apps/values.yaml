@@ -1,0 +1,19 @@
+repos:
+  username: a
+  password: b
+  urls:
+    - name: abc
+      url: "abc"
+    - name: zyz
+      url: "zyd"
+appofapps:
+  enabled: true
+  name: "app-name"
+  source:
+    path: "path-q"
+    repoURL: "repourl"
+    targetRevision: target
+  destination:
+    namespace: ns
+    server: ss
+  

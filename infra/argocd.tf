@@ -34,3 +34,26 @@ module "argocd_irsa" {
   policy_arns     = []
 depends_on = [ module.eks ]
 }
+
+resource "helm_release" "register_app_of_apps" {
+  name = "app-of-apps"
+
+  repository       = "./charts"
+  chart            = "votingapp-app-of-apps"
+  create_namespace =  false
+  namespace        = "argocd"
+
+  cleanup_on_fail = true
+
+  values = [file("./app-of-apps.yaml")]
+  depends_on = [ helm_release.argocd  ]
+}
+
+module "register-apps" {
+  source = "git::https://github.com/Pranadeep2624/terraform-aws-modules.git//ArgoCDClusterConnect"
+  argocd_management_role_arn = module.argocd_irsa.role_arn
+  cluster_endpoint = module.eks.endpoint
+  cluster_name = module.eks.eks_cluster_name
+  cluster_certificate_authority_data = module.eks.eks_cluster_cert_authority
+  cluster_connect_secret_name = module.eks.eks_cluster_name
+}
