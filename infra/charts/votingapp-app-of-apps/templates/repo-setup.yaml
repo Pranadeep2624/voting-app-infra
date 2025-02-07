@@ -1,6 +1,5 @@
 {{- range .Values.repos.urls }}
 ---
-
 apiVersion: v1
 kind: Secret
 metadata:
