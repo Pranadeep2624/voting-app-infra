@@ -1,3 +1,6 @@
+/*=======
+Common Variables
+=======*/
 variable "region" {
 
 }
