@@ -24,7 +24,8 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: redis-service
+  name: redis
+  namespace: demo-voting-app
 spec:
   type: ClusterIP
   ports:
