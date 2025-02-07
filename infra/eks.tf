@@ -114,6 +114,6 @@ resource "helm_release" "aws_alb_controller" {
       value = helm_key_value.value
     }
   }
-  depends_on = [ module.controller ]
+  
 }
 
