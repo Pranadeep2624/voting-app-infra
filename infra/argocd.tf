@@ -52,7 +52,9 @@ resource "helm_release" "register_app_of_apps" {
   })]
   depends_on = [ helm_release.argocd , module.register-apps ]
 }
-
+/*=====
+Creating IAM Role for argocd management role to assume to access cluster
+======*/
 module "register-apps" {
   source = "git::https://github.com/Pranadeep2624/terraform-aws-modules.git//ArgoCDClusterConnect"
   argocd_management_role_arn = module.argocd_irsa.role_arn
