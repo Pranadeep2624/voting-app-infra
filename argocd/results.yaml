@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: result
-          image: schoolofdevops/vote-result
+          image: 970547367831.dkr.ecr.us-east-1.amazonaws.com/result-app:17
           ports:
             - containerPort: 80
 
