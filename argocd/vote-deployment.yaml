@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: vote
-          image: 970547367831.dkr.ecr.us-east-1.amazonaws.com/voting-app:5
+          image: 970547367831.dkr.ecr.us-east-1.amazonaws.com/voting-app:6
           ports:
             - containerPort: 80
 
