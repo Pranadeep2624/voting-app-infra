@@ -29,6 +29,5 @@ spec:
   ports:
     - port: 80
       targetPort: 80
-      nodePort: 30081
   selector:
     app: results
