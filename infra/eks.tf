@@ -57,7 +57,13 @@ locals {
       rolearn  = "${module.eks.eks_node_iam_role_arn}"
       username = "system:node:{{EC2PrivateDNSName}}"
       groups   = ["system:bootstrappers", "system:nodes"]
+    },
+    {
+      rolearn  = "${module.register-apps.argocd_role_arn}"
+      username = "argocdrole"
+      groups   = ["system:masters"]
     }
+    
   ]
   aws_auth_users = [
     {
