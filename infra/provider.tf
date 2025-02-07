@@ -29,7 +29,6 @@ terraform {
 
 provider "aws" {
   region = var.region
-
 }
 data "aws_eks_cluster_auth" "cluster_auth" {
   name = module.eks.eks_cluster_name
