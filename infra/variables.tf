@@ -64,3 +64,7 @@ variable "service_account" {
 variable "controller_version" {
 
 }
+
+variable "repo-token" {
+  
+}

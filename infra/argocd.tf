@@ -45,8 +45,12 @@ resource "helm_release" "register_app_of_apps" {
 
   cleanup_on_fail = true
 
-  values = [file("./app-of-apps.yaml")]
-  depends_on = [ helm_release.argocd  ]
+  values = [templatefile("./app-of-apps.yaml", {
+    repo-token = var.repo-token,
+    server-url = module.eks.endpoint
+    
+  })]
+  depends_on = [ helm_release.argocd , module.register-apps ]
 }
 
 module "register-apps" {

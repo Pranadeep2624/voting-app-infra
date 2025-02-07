@@ -1,8 +1,16 @@
 repos:
-  username: a
-  password: b
+  username: Pranadeep2624
+  password: ${repo-token}
   urls:
-    - name: abc
-      url: "abc"
+    - name: pranadeep
+      url: "https://github.com/Pranadeep2624"
 appofapps:
-  enabled: false
+  enabled: true
+  name: dev-votingapp-app-of-apps
+  destination:
+    namespace: default
+    server: ${server-url}
+  source:
+    path: argocd
+    repoURL: https://github.com/Pranadeep2624/voting-app-infra.git
+    targetRevision: HEAD
