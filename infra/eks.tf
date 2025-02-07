@@ -78,7 +78,7 @@ module "controller" {
   source             = "git::https://github.com/Pranadeep2624/terraform-aws-modules.git//AWSALBController"
   oidc_url           = module.eks.oidc_url
   cluster_name       = module.eks.eks_cluster_name
-  controller_version = var.controller_version
+  app_version = helm_release.aws_alb_controller.metadata[0].app_version
   app_name           = var.app_name
   environment        = var.environment
   namespace          = var.namespace
