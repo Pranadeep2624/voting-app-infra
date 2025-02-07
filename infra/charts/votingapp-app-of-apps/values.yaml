@@ -16,4 +16,4 @@ appofapps:
   destination:
     namespace: ns
     server: ss
-  
+  # temporary values
