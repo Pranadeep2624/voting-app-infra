@@ -1,8 +1,6 @@
 data "aws_caller_identity" "current" {
 
 }
-
-
 module "eks" {
   source                      = "git::https://github.com/Pranadeep2624/terraform-aws-modules.git//EKS"
   environment                 = var.environment
