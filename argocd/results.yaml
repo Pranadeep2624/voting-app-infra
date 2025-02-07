@@ -1,33 +1,36 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: results
-  labels:
-    app: results
+  name: result
+  namespace: demo-voting-app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: results
+      app: result
   template:
     metadata:
       labels:
-        app: results
+        app: result
     spec:
       containers:
-        - name: results
+        - name: result
           image: schoolofdevops/vote-result
           ports:
             - containerPort: 80
+
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: results-service
+  name: result
+  namespace: demo-voting-app
 spec:
-  type: NodePort
-  ports:
-    - port: 80
-      targetPort: 80
   selector:
-    app: results
+    app: result
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: ClusterIP

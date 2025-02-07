@@ -1,9 +1,9 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: worker
-  labels:
-    app: worker
+  namespace: demo-voting-app
 spec:
   replicas: 1
   selector:
